@@ -1,0 +1,368 @@
+﻿Version=5.5
+NumberOfModules=1
+Module1=Starter
+Build1=Default,com.serogen.christmasaddon
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23"/>~\n~<supports-screens android:largeScreens="true"~\n~	android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Translucent.NoTitleBar")~\n~'End of default text.~\n~'End of Appodeal
+IconFile=
+NumberOfFiles=90
+File1=bed.png
+File2=bed_feet_end.png
+File3=bed_feet_side.png
+File4=bed_feet_top.png
+File5=bed_head_end.png
+File6=bed_head_side.png
+File7=bed_head_top.png
+File8=birch.png
+File9=chain_1.png
+File10=chest_front.png
+File11=chest_side.png
+File12=chest_top.png
+File13=Christmas_addon.bal
+File14=creeper.png
+File15=Description.png
+File16=description2.png
+File17=diamond_1.png
+File18=door_acacia_upper.png
+File19=door_birch_upper.png
+File20=door_dark_oak_upper.png
+File21=door_iron_upper.png
+File22=door_jungle_upper.png
+File23=door_spruce_upper.png
+File24=door_wood_upper.png
+File25=double_normal.png
+File26=double_plant_grass_bottom.tga
+File27=double_plant_grass_top.tga
+File28=egg_pig.png
+File29=empty.json
+File30=en_GB.lang
+File31=en_US.lang
+File32=evergreen.png
+File33=fire_0.png
+File34=fire_0_placeholder.png
+File35=fire_1.png
+File36=fire_1_placeholder.png
+File37=fire_layer_0.png.mcmeta
+File38=fire_layer_1.png.mcmeta
+File39=flame_atlas.png
+File40=flipbook_textures.json
+File41=foliage.png
+File42=glass.png
+File43=glyph_04.png
+File44=gold_1.png
+File45=grass.png
+File46=grass_side.tga
+File47=grass_side_carried.png
+File48=grass_top.png
+File49=gui.png
+File50=IMG_46002.png
+File51=iron_1.png
+File52=kz.png
+File53=leather_1.tga
+File54=leaves_acacia.tga
+File55=leaves_acacia_opaque.png
+File56=leaves_big_oak.tga
+File57=leaves_big_oak_opaque.png
+File58=leaves_birch.tga
+File59=leaves_birch_opaque.png
+File60=leaves_jungle.tga
+File61=leaves_jungle_opaque.png
+File62=leaves_oak.tga
+File63=leaves_oak_opaque.png
+File64=leaves_spruce.tga
+File65=leaves_spruce_opaque.png
+File66=mobs.json
+File67=normal.png
+File68=pack_icon.png
+File69=pack_icon_b.png
+File70=pack_manifest.json
+File71=pack_manifest_b.json
+File72=painting.png
+File73=particles.png
+File74=pig.png
+File75=pig_e.json
+File76=pig_l.json
+File77=ru_RU.lang
+File78=sea_lantern.png
+File79=skeleton.png
+File80=skull_creeper.png
+File81=skull_skeleton.png
+File82=skull_wither.png
+File83=skull_zombie.png
+File84=snowgolem.json
+File85=sounds.json
+File86=tallgrass.tga
+File87=terrain_texture.json
+File88=vine.png
+File89=wither_skeleton.png
+File90=zombie.png
+NumberOfLibraries=3
+Library1=core
+Library2=dialogs
+Library3=reflection
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Christmas Addon for MCPE
+	#VersionCode: 4
+	#VersionName: 1.3
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: true
+	#IncludeTitle: false
+#End Region
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+End Sub
+
+Sub Globals
+	Dim bmp As Bitmap
+	Dim ScrollView1 As ScrollView
+	Dim Button1 As Button
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Christmas_addon")
+	bmp.InitializeSample(File.DirAssets, "icon.png",48,48)	
+	BuildScreen
+	ShowDialog
+End Sub
+Sub GetDefaultLanguage As String
+	Dim r As Reflector
+	r.Target=r.RunStaticMethod("java.util.Locale","getDefault",Null,Null)
+	Return r.RunMethod("getLanguage")
+End Sub
+
+Sub BuildScreen()
+	Dim ImageView1 As ImageView
+	Dim ImageView2 As ImageView
+	Button1.Initialize("Button1")
+	If GetDefaultLanguage="ru" Then Button1.Text="Установить" Else Button1.Text="Install"
+	ImageView1.Initialize("")
+	ImageView1.Gravity=Gravity.FILL
+	ImageView1.Bitmap=LoadBitmap(File.DirAssets, "img_46002.png")
+	ImageView2.Initialize("")
+	ImageView2.Gravity=Gravity.FILL
+	If GetDefaultLanguage="ru" Then ImageView2.Bitmap=LoadBitmap(File.DirAssets, "Description.png") Else ImageView2.Bitmap=LoadBitmap(File.DirAssets, "Description2.png")
+	ScrollView1.Width=100%x
+	ScrollView1.Height=100%y
+	ScrollView1.Panel.Width=100%x
+	ScrollView1.Panel.Height=200%y
+	ScrollView1.Panel.AddView(ImageView1,0,0,100%x,77%x)
+	ScrollView1.Panel.AddView(Button1,15%x,200%y-17%x,70%x,15%x)
+	ScrollView1.Panel.AddView(ImageView2,0,77%x,100%x,200%y-96%x)
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+Sub Button1_Click
+	CopyFiles
+End Sub
+
+Sub CopyFiles
+	Dim TargetDir2 As String = File.DirRootExternal & "/games/com.mojang/behavior_packs/"
+	Try
+	If File.Exists(TargetDir2, "") = False Then
+		If GetDefaultLanguage="ru" Then Msgbox("Майнкрафт не установлен на вашем устройстве","Ошибка") Else Msgbox("Minecraft is not installed on your device","Error")
+		Return
+	Else
+	If File.Exists(TargetDir2 & "Behaviour_Christmas_Addon", "") = False Then 
+		MakeDirs 
+		Else 
+			If GetDefaultLanguage="ru" Then Msgbox("Аддон уже распакован","") Else Msgbox("Addon already unpacked","")
+	End If
+	End If
+	Catch
+		If GetDefaultLanguage="ru" Then Msgbox("Что-то пошло не так :( Вот в чём проблема " & LastException & ". С Новым Годом!",Null) Else Msgbox("Something went wrong:(. That's the problem: " & LastException & " I wish you Merry Christmas and Happy New Year!",Null)
+	End Try
+End Sub
+
+Sub MakeDirs
+	Dim Dir As String = File.DirRootExternal & "/games/com.mojang/behavior_packs/"
+	Dim I As Byte
+	Dim PBar As ProgressBar
+	PBar.Initialize("")
+	ScrollView1.Panel.AddView(PBar,0,200%y-5%x,100%x,5%x)
+	File.MakeDir(Dir, "Behaviour_Christmas_Addon")
+	File.Copy(File.DirAssets,"pack_icon_b.png",Dir & "Behaviour_Christmas_Addon","pack_icon.png")
+	File.Copy(File.DirAssets,"pack_manifest_b.json",Dir & "Behaviour_Christmas_Addon","pack_manifest.json")
+	
+	File.MakeDir(Dir & "Behaviour_Christmas_Addon","entities")
+	File.Copy(File.DirAssets,"pig_e.json",Dir & "Behaviour_Christmas_Addon/entities","pig.json")
+	File.Copy(File.DirAssets,"snowgolem.json",Dir & "Behaviour_Christmas_Addon/entities","snowgolem.json")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Behaviour_Christmas_Addon","loot_tables")
+	File.Copy(File.DirAssets,"empty.json",Dir & "Behaviour_Christmas_Addon/loot_tables","empty.json")
+	File.MakeDir(Dir & "Behaviour_Christmas_Addon/loot_tables","entities")
+	File.Copy(File.DirAssets,"pig_l.json",Dir & "Behaviour_Christmas_Addon/loot_tables/entities","pig.json")
+	
+	Dir = File.DirRootExternal & "/games/com.mojang/resource_packs/"
+	
+	File.MakeDir(Dir, "Resource_Christmas_Addon")
+	File.Copy(File.DirAssets,"pack_icon.png",Dir & "Resource_Christmas_Addon","pack_icon.png")
+	File.Copy(File.DirAssets,"pack_manifest.json",Dir & "Resource_Christmas_Addon","pack_manifest.json")
+	File.Copy(File.DirAssets,"sounds.json",Dir & "Resource_Christmas_Addon","sounds.json")
+	File.Copy(File.DirAssets,"terrain_texture.json",Dir & "Resource_Christmas_Addon","terrain_texture.json")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Resource_Christmas_Addon","font")
+	File.Copy(File.DirAssets,"glyph_04.png",Dir & "Resource_Christmas_Addon/font","glyph_04.png")
+	
+	File.MakeDir(Dir & "Resource_Christmas_Addon","models")
+	File.Copy(File.DirAssets,"mobs.json",Dir & "Resource_Christmas_Addon/models","mobs.json")
+	
+	File.MakeDir(Dir & "Resource_Christmas_Addon","texts")
+	File.Copy(File.DirAssets,"en_GB.lang",Dir & "Resource_Christmas_Addon/texts","en_GB.lang")
+	File.Copy(File.DirAssets,"en_US.lang",Dir & "Resource_Christmas_Addon/texts","en_US.lang")
+	File.Copy(File.DirAssets,"ru_RU.lang",Dir & "Resource_Christmas_Addon/texts","ru_RU.lang")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Resource_Christmas_Addon","textures")
+	File.Copy(File.DirAssets,"flame_atlas.png",Dir & "Resource_Christmas_Addon/textures","flame_atlas.png")
+	File.Copy(File.DirAssets,"flipbook_textures.json",Dir & "Resource_Christmas_Addon/textures","flipbook_textures.json")
+		
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","blocks")
+	File.Copy(File.DirAssets,"bed_feet_end.png",Dir & "Resource_Christmas_Addon/textures/blocks","bed_feet_end.png")
+	File.Copy(File.DirAssets,"bed_feet_side.png",Dir & "Resource_Christmas_Addon/textures/blocks","bed_feet_side.png")
+	File.Copy(File.DirAssets,"bed_feet_top.png",Dir & "Resource_Christmas_Addon/textures/blocks","bed_feet_top.png")
+	File.Copy(File.DirAssets,"bed_head_end.png",Dir & "Resource_Christmas_Addon/textures/blocks","bed_head_end.png")
+	File.Copy(File.DirAssets,"bed_head_side.png",Dir & "Resource_Christmas_Addon/textures/blocks","bed_head_side.png")
+	File.Copy(File.DirAssets,"bed_head_top.png",Dir & "Resource_Christmas_Addon/textures/blocks","bed_head_top.png")
+	File.Copy(File.DirAssets,"chest_front.png",Dir & "Resource_Christmas_Addon/textures/blocks","chest_front.png")
+	File.Copy(File.DirAssets,"chest_side.png",Dir & "Resource_Christmas_Addon/textures/blocks","chest_side.png")
+	File.Copy(File.DirAssets,"chest_top.png",Dir & "Resource_Christmas_Addon/textures/blocks","chest_top.png")
+	File.Copy(File.DirAssets,"door_acacia_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_acacia_upper.png")
+	File.Copy(File.DirAssets,"door_birch_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_birch_upper.png")
+	File.Copy(File.DirAssets,"door_dark_oak_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_dark_oak_upper.png")
+	File.Copy(File.DirAssets,"door_iron_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_iron_upper.png")
+	File.Copy(File.DirAssets,"door_jungle_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_jungle_upper.png")
+	File.Copy(File.DirAssets,"door_spruce_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_spruce_upper.png")
+	File.Copy(File.DirAssets,"door_wood_upper.png",Dir & "Resource_Christmas_Addon/textures/blocks","door_wood_upper.png")
+	File.Copy(File.DirAssets,"double_plant_grass_bottom.tga",Dir & "Resource_Christmas_Addon/textures/blocks","double_plant_grass_bottom.tga")
+	File.Copy(File.DirAssets,"double_plant_grass_top.tga",Dir & "Resource_Christmas_Addon/textures/blocks","double_plant_grass_top.tga")
+	File.Copy(File.DirAssets,"fire_0.png",Dir & "Resource_Christmas_Addon/textures/blocks","fire_0.png")
+	File.Copy(File.DirAssets,"fire_0_placeholder.png",Dir & "Resource_Christmas_Addon/textures/blocks","fire_0_placeholder.png")
+	File.Copy(File.DirAssets,"fire_1.png",Dir & "Resource_Christmas_Addon/textures/blocks","fire_1.png")
+	File.Copy(File.DirAssets,"fire_1_placeholder.png",Dir & "Resource_Christmas_Addon/textures/blocks","fire_1_placeholder.png")
+	File.Copy(File.DirAssets,"fire_layer_0.png.mcmeta",Dir & "Resource_Christmas_Addon/textures/blocks","fire_layer_0.png.mcmeta")
+	File.Copy(File.DirAssets,"fire_layer_1.png.mcmeta",Dir & "Resource_Christmas_Addon/textures/blocks","fire_layer_1.png.mcmeta")
+	File.Copy(File.DirAssets,"glass.png",Dir & "Resource_Christmas_Addon/textures/blocks","glass.png")
+	File.Copy(File.DirAssets,"grass_side.tga",Dir & "Resource_Christmas_Addon/textures/blocks","grass_side.tga")
+	File.Copy(File.DirAssets,"grass_top.png",Dir & "Resource_Christmas_Addon/textures/blocks","grass_top.png")
+	File.Copy(File.DirAssets,"leaves_acacia.tga",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_acacia.tga")
+	File.Copy(File.DirAssets,"leaves_acacia_opaque.png",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_acacia_opaque.png")
+	File.Copy(File.DirAssets,"leaves_big_oak.tga",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_big_oak.tga")
+	'File.Copy(File.DirAssets,"leaves_big_oak_opaque.png",Dir & "Resource_Christmas_Addon/texture/blocks","leaves_big_oak_opaque.png")
+	File.Copy(File.DirAssets,"leaves_birch.tga",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_birch.tga")
+	File.Copy(File.DirAssets,"leaves_birch_opaque.png",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_birch_opaque.png")
+	File.Copy(File.DirAssets,"leaves_jungle.tga",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_jungle.tga")
+	File.Copy(File.DirAssets,"leaves_jungle_opaque.png",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_jungle_opaque.png")
+	File.Copy(File.DirAssets,"leaves_oak.tga",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_oak.tga")
+	File.Copy(File.DirAssets,"leaves_oak_opaque.png",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_oak_opaque.png")
+	File.Copy(File.DirAssets,"leaves_spruce.tga",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_spruce.tga")
+	File.Copy(File.DirAssets,"leaves_spruce_opaque.png",Dir & "Resource_Christmas_Addon/textures/blocks","leaves_spruce_opaque.png")
+	File.Copy(File.DirAssets,"sea_lantern.png",Dir & "Resource_Christmas_Addon/textures/blocks","sea_lantern.png")
+	File.Copy(File.DirAssets,"tallgrass.tga",Dir & "Resource_Christmas_Addon/textures/blocks","tallgrass.tga")
+	File.Copy(File.DirAssets,"vine.png",Dir & "Resource_Christmas_Addon/textures/blocks","vine.png")
+	File.Copy(File.DirAssets,"grass_side_carried.png",Dir & "Resource_Christmas_Addon/textures/blocks","grass_side_carried.png")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","colormap")
+	File.Copy(File.DirAssets,"birch.png",Dir & "Resource_Christmas_Addon/textures/colormap","birch.png")
+	File.Copy(File.DirAssets,"evergreen.png",Dir & "Resource_Christmas_Addon/textures/colormap","evergreen.png")
+	File.Copy(File.DirAssets,"foliage.png",Dir & "Resource_Christmas_Addon/textures/colormap","foliage.png")
+	File.Copy(File.DirAssets,"grass.png",Dir & "Resource_Christmas_Addon/textures/colormap","grass.png")
+	
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","entity")
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures/entity","chest")
+	File.Copy(File.DirAssets,"double_normal.png",Dir & "Resource_Christmas_Addon/textures/entity/chest","double_normal.png")
+	File.Copy(File.DirAssets,"normal.png",Dir & "Resource_Christmas_Addon/textures/entity/chest","normal.png")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures/entity","pig")
+	File.Copy(File.DirAssets,"pig.png",Dir & "Resource_Christmas_Addon/textures/entity/pig","pig.png")
+	
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures/entity","skulls")
+	File.Copy(File.DirAssets,"creeper.png",Dir & "Resource_Christmas_Addon/textures/entity/skulls","creeper.png")
+	File.Copy(File.DirAssets,"skeleton.png",Dir & "Resource_Christmas_Addon/textures/entity/skulls","skeleton.png")
+	File.Copy(File.DirAssets,"wither_skeleton.png",Dir & "Resource_Christmas_Addon/textures/entity/skulls","wither_skeleton.png")
+	File.Copy(File.DirAssets,"zombie.png",Dir & "Resource_Christmas_Addon/textures/entity/skulls","zombie.png")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","gui")
+	File.Copy(File.DirAssets,"gui.png",Dir & "Resource_Christmas_Addon/textures/gui","gui.png")
+	
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","items")
+	File.Copy(File.DirAssets,"bed.png",Dir & "Resource_Christmas_Addon/textures/items","b ed.png")
+	File.Copy(File.DirAssets,"egg_pig.png",Dir & "Resource_Christmas_Addon/textures/items","egg_pig.png")
+	File.Copy(File.DirAssets,"painting.png",Dir & "Resource_Christmas_Addon/textures/items","painting.png")
+	File.Copy(File.DirAssets,"skull_creeper.png",Dir & "Resource_Christmas_Addon/textures/items","skull_creeper.png")
+	File.Copy(File.DirAssets,"skull_skeleton.png",Dir & "Resource_Christmas_Addon/textures/items","skull_skeleton.png")
+	File.Copy(File.DirAssets,"skull_wither.png",Dir & "Resource_Christmas_Addon/textures/items","skull_wither.png")
+	File.Copy(File.DirAssets,"skull_zombie.png",Dir & "Resource_Christmas_Addon/textures/items","skull_zombie.png")
+	
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","models")
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures/models","armor")
+	File.Copy(File.DirAssets,"chain_1.png",Dir & "Resource_Christmas_Addon/textures/models/armor","chain_1.png")
+	File.Copy(File.DirAssets,"diamond_1.png",Dir & "Resource_Christmas_Addon/textures/models/armor","diamond_1.png")
+	File.Copy(File.DirAssets,"gold_1.png",Dir & "Resource_Christmas_Addon/textures/models/armor","gold_1.png")
+	File.Copy(File.DirAssets,"iron_1.png",Dir & "Resource_Christmas_Addon/textures/models/armor","iron_1.png")
+	File.Copy(File.DirAssets,"leather_1.tga",Dir & "Resource_Christmas_Addon/textures/models/armor","leather_1.tga")
+	PBar.Progress=10*I
+	I=I+1
+	DoEvents
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","painting")
+	File.Copy(File.DirAssets,"kz.png",Dir & "Resource_Christmas_Addon/textures/painting","kz.png")
+	File.MakeDir(Dir & "Resource_Christmas_Addon/textures","particle")
+	File.Copy(File.DirAssets,"particles.png",Dir & "Resource_Christmas_Addon/textures/particle","particles.png")
+	If GetDefaultLanguage="ru" Then ToastMessageShow("Готово",True) Else ToastMessageShow("Done",True)
+	PBar.RemoveView
+	If GetDefaultLanguage="ru" Then Msgbox("Теперь запустите Minecraft и импортируйте аддон", "") Else Msgbox ( "Now run Minecraft and import the addon", "")
+End Sub
+
+Sub ShowDialog
+	Dim cd As CustomDialog
+    Dim pnl As Panel
+    pnl.Initialize("pnl")
+	Dim img As ImageView
+	img.Initialize("")
+    Dim bgnd As BitmapDrawable
+    bgnd.Initialize(LoadBitmap(File.DirAssets, "head.png"))
+	img.Background = bgnd
+	Dim lbl1 As Label
+	lbl1.Initialize("")
+	lbl1.TextColor = Colors.White
+	lbl1.TextSize = 20
+	pnl.AddView(img,0, 0, 77%x, 20%y)
+	pnl.AddView(lbl1, 0, 20%y, 77%x, 50%y)
+    cd.AddView(pnl, 5%x, 0%y, 77%x, 70%y)
+	Dim ii As Int
+	If GetDefaultLanguage="ru" Then 
+		lbl1.Text = "Внимание! Данное приложение устарело. Рекомендуем Вам скачать обновлённую версию приложения 'Новогодний Аддон 2'. В новой версии исправлены многие ошибки, а сам аддон значительно улучшен"
+		ii = cd.Show("Доступна новая версия!", "Перейти", "Отмена", "", bmp)
+	Else
+		lbl1.Text = "Attention! This application is deprecated. We recommend that you download the updated version of the application 'Christmas Add-on 2'. In the new version many bugs are fixed, And the addon itself Is significantly improved"
+		ii = cd.Show("A new version is available!", "Go", "Cancel", "", bmp)
+	End If
+    
+    If ii = -1 Then
+		Dim i As Intent
+		i.Initialize(i.ACTION_VIEW, "http://play.google.com/store/apps/details?id=com.nesterov.christmasaddon")
+		StartActivity(i)
+	End If
+End Sub

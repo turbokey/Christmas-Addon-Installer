@@ -1,0 +1,118 @@
+{
+  "minecraft:entity": {
+    "format_version": 0.1,
+
+    "component_groups": {
+
+      "minecraft:pig_unsaddled": {
+        "minecraft:interact": [
+          {
+            "on_interact": {
+              "filters": {
+                "other_with_item": "saddle"
+              },
+              "event": "minecraft:on_saddled"
+            },
+            "use_item": true,
+            "play_sounds": "saddle",
+            "interact_text": "action.interact.saddle"
+          }
+        ],
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "family_types": [
+            "zombie"
+          ],
+          "seats": {
+            "position": [0.0, 0.63, 0.0]
+          }
+        }
+      },
+
+      "minecraft:pig_leashed": {
+        "minecraft:behavior.move_towards_restriction": {
+          "priority": 2,
+          "speed_multiplier": 1.0
+        }
+      }
+    },
+
+
+    "components": {
+      "minecraft:identifier": {
+        "id": "minecraft:pig"
+      },
+      "minecraft:type_family": {
+        "family": [ "pig" ]
+      },
+
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:nameable": {
+      },
+      "minecraft:health": {
+        "value": 10,
+        "max": 10
+      },
+      "minecraft:movement": {
+        "value": 0.25,
+        "max": 0.5
+      },
+            "minecraft:collision_box": {
+        "width": 1.0,
+        "height": 2.8
+      },
+      "minecraft:leashable": {
+        "soft_distance": 4.0,
+        "hard_distance": 6.0,
+        "max_distance": 10.0,
+        "on_leash": {
+          "event": "minecraft:on_leash",
+          "target": "self"
+        },
+        "on_unleash": {
+          "event": "minecraft:on_unleash",
+          "target": "self"
+        }
+      },
+      "minecraft:behavior.mount_pathing": {
+        "priority": 1,
+        "speed_multiplier": 1.25,
+        "target_dist": 0.0,
+        "track_target": true
+      },
+      "minecraft:fire_immune": true,
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+
+      "minecraft:behavior.tempt": {
+        "priority": 5,
+        "speed_multiplier": 1.2,
+        "items": [
+          "stick"
+        ]
+      }
+    },
+
+
+    "events": {
+      "minecraft:on_leash": {
+        "add": {
+          "component_groups": [
+            "minecraft:pig_leashed"
+          ]
+        }
+      },
+      "minecraft:on_unleash": {
+        "remove": {
+          "component_groups": [
+            "minecraft:pig_leashed"
+          ]
+        }
+      }
+    }
+  }
+}

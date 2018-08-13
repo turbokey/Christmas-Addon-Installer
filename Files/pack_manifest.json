@@ -1,0 +1,16 @@
+{
+  "header": {
+    "pack_id": "b80378bf-519d-4815-b151-a07f4f45c851",
+    "name": "Christmas add-on",
+    "packs_version": "0.0.1",
+    "description": "The add-on will immerse you in a fairy-tale Christmas atmosphere. §cMade by Sergey Nesterov",
+    "modules": [
+      {
+        "description": "§cMade by Sergey Nesterov",
+        "version": "0.0.1",
+        "uuid": "b81378bf-519d-4815-b151-a07f4f45c851",
+        "type": "resources"
+      }
+    ]
+  }
+}

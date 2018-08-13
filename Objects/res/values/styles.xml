@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style 
+        name="MyTheme" parent="android:style/Theme.Light">
+    </style>
+
+    <style 
+        name="MyThemeNoTitle" parent="android:style/Theme.Light.NoTitleBar">
+    </style>
+
+    <style 
+        name="MyThemeTransparent" parent="android:style/Theme.Translucent.NoTitleBar">
+    </style>
+</resources>
